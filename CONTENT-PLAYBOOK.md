@@ -16,7 +16,7 @@ Teams and brands are served on /work-with-me; don't pitch training in the weekly
 - Fact-check every AI tool feature, name and price live before writing it. If something can't be verified, mark it with ⚠️ in the draft for Lynn to check. Prefer tool-agnostic advice.
 
 ## Weekly steps (for the agent)
-1. **Topic.** Use the topic Lynn gave. If she gave none, pick the next one from the topic bank below and say so at the top of the drop.
+1. **Topic.** Read `NEXT-TOPIC.md`. If it has a topic, use it (and its notes). If it's empty, pick the next unused topic from the topic bank below and say so in the pull request. Remove the topic you used from the bank, and reset `NEXT-TOPIC.md` to an empty `Topic:` line in the same pull request.
 2. **Research.** Check current features and wording of any tool mentioned. Note sources in `drops/<date>-<slug>/sources.md`.
 3. **Article.** Write `content/posts/<date>-<slug>.md` (date = next Thursday) with `status: draft`. 800 to 1,200 words. Structure:
    - Problem in 2 to 3 short paragraphs
@@ -42,7 +42,6 @@ Teams and brands are served on /work-with-me; don't pitch training in the weekly
 6. Set the comment keyword in ManyChat (or reply by hand) with the DM text.
 
 ## Topic bank
-- Make AI write captions that sound like you (voice prompt + examples)
 - Turn one blog post into 10 social posts in 15 minutes
 - Build a Claude Project / custom GPT for your brand
 - AI product photos from one phone photo (hero, detail, mood)
