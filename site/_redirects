@@ -1,0 +1,13 @@
+# Old Showit addresses -> new pages
+/home                  /               301
+/design-at-scale       /work-with-me   301
+/education             /work-with-me   301
+/terms-and-conditions  /terms          301
+/privacy-policy-terms  /privacy        301
+/membership            /for-designers#studio  301
+/the-templates-vault   /for-designers#vault   301
+/c-school              /for-designers         301
+/c-school/*            /for-designers         301
+/resources             /newsletter/           301
+/blog                  /newsletter/           301
+/blog/*                /newsletter/           301

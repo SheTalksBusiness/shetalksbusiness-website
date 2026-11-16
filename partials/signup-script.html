@@ -1,0 +1,29 @@
+<script id="stb-signup">
+(function(){
+  var FALLBACK='https://she-talks-business.myflodesk.com/freetemplates';
+  var OK=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  [].slice.call(document.querySelectorAll('.nl-form')).forEach(function(f){
+    var started=Date.now(), email=f.querySelector('.nl-email'), btn=f.querySelector('.nl-btn'), msg=f.querySelector('.nl-msg');
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var v=(email.value||'').trim();
+      if(!OK.test(v)){ msg.textContent='Please enter a valid email address.'; email.focus(); return; }
+      var hp=f.querySelector('.nl-hp');
+      function done(){ f.classList.add('nl-done'); msg.textContent=f.getAttribute('data-success')||"You're in! Check your inbox, your first email is on its way."; }
+      if((hp && hp.value) || Date.now()-started<1500){ done(); return; }
+      btn.disabled=true; msg.textContent='';
+      fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:v,segment:f.getAttribute('data-segment')||'newsletter',source:location.pathname})})
+        .then(function(r){ if(r.ok) return done(); throw r.status; })
+        .catch(function(){ window.location.href=FALLBACK; });
+    });
+  });
+  [].slice.call(document.querySelectorAll('[data-copy]')).forEach(function(b){
+    b.addEventListener('click',function(){
+      var el=document.getElementById(b.getAttribute('data-copy')); if(!el) return;
+      var txt=el.innerText;
+      function ok(){ b.classList.add('copied'); var t=b.textContent; b.textContent='Copied!'; setTimeout(function(){ b.textContent=t; b.classList.remove('copied'); },1800); }
+      if(navigator.clipboard) navigator.clipboard.writeText(txt).then(ok,function(){}); else { var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); try{document.execCommand('copy'); ok();}catch(e){} }
+    });
+  });
+})();
+</script>

@@ -1,0 +1,41 @@
+<style id="stb-shared">
+.nl-form{display:flex;flex-wrap:wrap;gap:10px;width:100%;max-width:540px;position:relative}
+.nl-email{flex:1 1 240px;min-width:0;height:56px;box-sizing:border-box;padding:0 18px;border:1px solid #24242440;border-radius:2px;background:#ffffff;font-family:inherit;font-size:16px;color:#242424}
+.nl-btn{height:56px;padding:0 28px;border:0;border-radius:2px;background:#242424;color:#ffffff;font-family:inherit;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background 200ms}
+.nl-btn:hover{background:#000000}
+.nl-btn[disabled]{opacity:.6;cursor:wait}
+.nl-hp{position:absolute !important;left:-9999px;width:1px;height:1px;opacity:0}
+.nl-msg{flex:1 1 100%;margin:0;font-size:14px;line-height:1.5}
+.nl-msg:empty{display:none}
+.nl-done .nl-email,.nl-done .nl-btn{display:none}
+.nl-done .nl-msg{font-family:'Editors Hand',cursive;font-size:30px;line-height:1.15;color:#7a715f}
+.nl-note{margin:0;font-size:13px;color:#242424b3}
+.nl-note a{color:inherit}
+.on-dark .nl-email{border-color:#ffffff}
+.on-dark .nl-btn{background:#ffffff;color:#242424}
+.on-dark .nl-btn:hover{background:#e5ddd2}
+.on-dark.nl-done .nl-msg,.on-dark .nl-msg{color:#ffffff}
+.on-dark + .nl-note{color:#ffffffb3}
+.prompt-card{background:#ffffff;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:16px;box-shadow:0 1px 2px #24242414,0 8px 24px -12px #24242414}
+.prompt-text{margin:0;background:#f7f4f0;border-radius:2px;padding:18px 20px;font-size:15px;line-height:1.6;white-space:pre-wrap;color:#242424;flex:1}
+.copy-btn{align-self:flex-start;border:1px solid #242424;background:transparent;color:#242424;padding:12px 20px;border-radius:2px;font-family:inherit;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all 200ms}
+.copy-btn:hover,.copy-btn.copied{background:#242424;color:#ffffff}
+.issue-card{display:flex;flex-direction:column;gap:12px;padding-top:24px;border-top:1px solid #242424;text-decoration:none;color:#242424}
+.issue-card:hover h3{color:#7a715f}
+.issue-card h3{margin:0;font-family:'Editors Note',Georgia,serif;font-weight:300;font-size:30px;line-height:1.15;transition:color 200ms}
+.issue-meta{font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#242424b3}
+.prose{font-size:19px;line-height:1.75;color:#242424e6}
+.prose h2{font-family:'Editors Note',Georgia,serif;font-weight:300;font-size:clamp(32px,3.6vw,44px);line-height:1.1;margin:56px 0 16px;color:#242424}
+.prose h3{font-family:'Editors Note',Georgia,serif;font-weight:300;font-size:28px;line-height:1.2;margin:40px 0 12px;color:#242424}
+.prose p{margin:0 0 22px}
+.prose ul,.prose ol{margin:0 0 22px;padding-left:24px}
+.prose li{margin:0 0 10px}
+.prose a{color:#242424;text-underline-offset:4px}
+.prose blockquote{margin:32px 0;padding:4px 0 4px 24px;border-left:2px solid #b9cfeb;font-family:'Editors Note',Georgia,serif;font-style:italic;font-size:26px;line-height:1.35;color:#242424}
+.prose pre{background:#f7f4f0;border-radius:4px;padding:22px 24px;white-space:pre-wrap;font-family:inherit;font-size:16px;line-height:1.65;margin:0 0 12px;position:relative}
+.prose code{font-family:inherit;background:#f7f4f0;padding:2px 6px;border-radius:2px}
+.prose pre code{background:none;padding:0}
+.prose img{max-width:100%;height:auto;border-radius:4px;display:block;margin:32px 0}
+.prose hr{border:0;border-top:1px solid #24242426;margin:48px 0}
+.prose .copy-btn{margin:0 0 28px}
+</style>
