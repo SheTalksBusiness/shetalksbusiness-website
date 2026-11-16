@@ -47,13 +47,22 @@ export default async (req) => {
     return json(502, { error: 'Could not sign you up right now' });
   }
 
+  // The subscriber now exists in Flodesk. Add them to the segments, using the id Flodesk returned.
+  let subId = email;
+  try { const s = await sub.json(); subId = s.id || email; } catch {}
   if (ids.length) {
-    const seg = await fetch(`${API}/subscribers/${encodeURIComponent(email)}/segments`, {
+    const seg = await fetch(`${API}/subscribers/${encodeURIComponent(subId)}/segments`, {
       method: 'POST', headers, body: JSON.stringify({ segment_ids: ids }),
     });
     if (!seg.ok) {
-      console.error('Flodesk segment error', seg.status, await seg.text());
-      return json(502, { error: 'Could not sign you up right now' });
+      // Don't fail the signup: the person is already on the list. Log what went wrong.
+      console.error('Flodesk segment error', seg.status, await seg.text(), 'ids tried:', ids.join(','));
+      try {
+        const list = await fetch(`${API}/segments?per_page=100`, { headers });
+        const body = await list.json();
+        const segs = (body.data || body || []).map((s) => `${s.name}=${s.id}`).join(' | ');
+        console.error('Flodesk segments available:', list.status, segs);
+      } catch (e) { console.error('Could not list segments', e); }
     }
   }
   return json(200, { ok: true });
