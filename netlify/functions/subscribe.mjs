@@ -7,6 +7,13 @@
 // Without a key it answers 503 and the form on the site falls back to the Flodesk signup page.
 
 const API = 'https://api.flodesk.com/v1';
+// Throwaway inbox services that bots and freebie hunters use.
+const DISPOSABLE = new Set(`mailinator.com guerrillamail.com guerrillamail.net sharklasers.com grr.la 10minutemail.com
+10minutemail.net temp-mail.org tempmail.com tempmail.net tempmailo.com yopmail.com yopmail.net trashmail.com
+trashmail.de getnada.com nada.email dispostable.com maildrop.cc mailnesia.com throwawaymail.com fakeinbox.com
+mintemail.com mohmal.com emailondeck.com spamgourmet.com mytemp.email tempr.email discard.email moakt.com
+burnermail.io inboxkitten.com mail.tm mail.gw byom.de fexpost.com tmpmail.org tmpmail.net emailfake.com
+33mail.com spambox.us getairmail.com tempinbox.com mailcatch.com`.split(/\s+/));
 const json = (status, body) => new Response(JSON.stringify(body), {
   status, headers: { 'content-type': 'application/json' },
 });
@@ -22,7 +29,20 @@ export default async (req) => {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) {
     return json(400, { error: 'Please enter a valid email address' });
   }
-  if (data.website) return json(200, { ok: true }); // honeypot: pretend success
+  // Spam checks. Suspicious requests get a fake "ok" so bots don't learn what blocked them.
+  const fake = (why) => { console.log('Blocked signup:', why); return json(200, { ok: true }); };
+  if (data.website) return fake('honeypot filled');
+  const origin = req.headers.get('origin') || req.headers.get('referer') || '';
+  if (!/^https:\/\/([a-z0-9-]+--)?(shetalksbusiness\.co|shetalksbusiness\.netlify\.app)(\/|$)/i.test(origin)) {
+    return fake('wrong origin ' + origin.slice(0, 80));
+  }
+  const elapsed = Number(data.t);
+  if (!Number.isFinite(elapsed) || elapsed < 2000) return fake('too fast or no timer');
+  const domain = email.split('@')[1];
+  if (DISPOSABLE.has(domain)) return fake('disposable domain ' + domain);
+  if (/^[a-z0-9]{20,}@/.test(email) && !/[aeiou]{1}/.test(email.split('@')[0].slice(0, 12))) {
+    return fake('random-looking address');
+  }
 
   let segments = {};
   try { segments = JSON.parse(process.env.FLODESK_SEGMENTS || '{}'); } catch {}
@@ -68,4 +88,8 @@ export default async (req) => {
   return json(200, { ok: true });
 };
 
-export const config = { path: '/api/subscribe' };
+export const config = {
+  path: '/api/subscribe',
+  // Max 5 signups per minute from the same IP address; extra requests get a 429.
+  rateLimit: { windowLimit: 5, windowSize: 60, aggregateBy: ['ip', 'domain'] },
+};

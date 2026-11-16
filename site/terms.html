@@ -319,7 +319,7 @@ a{color:#242424}a:hover{color:#7a715f}
       function done(){ f.classList.add('nl-done'); msg.textContent=f.getAttribute('data-success')||"You're in! Check your inbox, your first email is on its way."; }
       if((hp && hp.value) || Date.now()-started<1500){ done(); return; }
       btn.disabled=true; msg.textContent='';
-      fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:v,segment:f.getAttribute('data-segment')||'newsletter',source:location.pathname})})
+      fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:v,segment:f.getAttribute('data-segment')||'newsletter',source:location.pathname,website:hp?hp.value:'',t:Date.now()-started})})
         .then(function(r){ if(r.ok) return done(); throw r.status; })
         .catch(function(){ window.location.href=FALLBACK; });
     });
