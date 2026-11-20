@@ -164,7 +164,7 @@ def post_page(p, head, tail, others):
   <div style="max-width: 900px; margin: 0 auto; padding: 112px clamp(24px, 6vw, 96px); display: flex; flex-direction: column; gap: 24px; align-items: center; text-align: center;">
     <p style="{EYEBROW} color: #b9cfeb;">Free · every week</p>
     <h2 style="margin: 0; font-family: 'Editors Note', Georgia, serif; font-weight: 300; font-size: clamp(40px, 5vw, 64px); line-height: 1.06;">Get the next issue <em>in your inbox.</em></h2>
-    <p style="margin: 0; max-width: 540px; font-size: 18px; line-height: 1.6; color: #ffffffcc;">One AI or Canva workflow every week, explained step by step, with the prompts to copy.</p>
+    <p style="margin: 0; max-width: 540px; font-size: 18px; line-height: 1.6; color: #ffffffcc;">One AI system for marketing and sales every week: what it does, the tools, the prompts and the exact steps.</p>
     <div style="width: 100%; max-width: 540px; display: flex; flex-direction: column; gap: 10px; align-items: center;">{signup_form('newsletter', 'Join for free', dark=True)}</div>
   </div>
 </section>
@@ -174,15 +174,15 @@ def post_page(p, head, tail, others):
 
 
 def newsletter_page(posts, head, tail):
-    h = set_meta(head, 'The Resource Room: Free Weekly AI Newsletter | She Talks Business',
-                 'One AI or Canva workflow every week, explained step by step, with the prompts to copy and a free guide. Join 20,000+ creatives and small business owners.',
+    h = set_meta(head, 'The Resource Room: Free Weekly AI Marketing Newsletter | She Talks Business',
+                 'One AI system for marketing and sales every week, explained step by step, with the prompts to copy and a free guide. Join 20,000+ business owners and marketers.',
                  '/newsletter/')
     cards = '\n'.join(card(p) for p in posts) or (
         '<p style="margin: 0; font-size: 18px; color: #242424b3;">The first issue is on its way. Sign up above so you don\'t miss it.</p>')
     items = [
-        ('01', 'One workflow, step by step', 'Every week I test one AI or Canva workflow and show you exactly how it works, from the first prompt to the finished result.'),
-        ('02', 'Prompts to copy', 'No theory. The exact prompts I use, ready to paste into ChatGPT, Claude or your favourite image tool.'),
-        ('03', 'Free guides', 'Cheat sheets, prompt packs and templates that go with the issue, free for readers.'),
+        ('01', 'One system, step by step', 'Every week I take one AI system for marketing or sales and show you exactly how it works, from the first prompt to the finished setup.'),
+        ('02', 'Prompts to copy', 'No theory. The exact prompts I use for clients, ready to paste into ChatGPT or Claude.'),
+        ('03', 'Free guides', 'Checklists, prompt packs and templates that go with the issue, free for readers.'),
     ]
     what = ''.join(f'''<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 24px; border-top: 1px solid #242424;">
         <p style="margin: 0; font-family: 'Editors Note', Georgia, serif; font-style: italic; font-weight: 300; font-size: 28px; color: #7a715f;">{n}</p>
@@ -194,7 +194,7 @@ def newsletter_page(posts, head, tail):
     <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px;">
       <p style="{EYEBROW}">Free weekly newsletter</p>
       <h1 style="margin: 0; font-family: 'Editors Note', Georgia, serif; font-weight: 300; font-size: clamp(52px, 6.4vw, 92px); line-height: 1.02;">The Resource <em>Room.</em></h1>
-      <p style="margin: 0; max-width: 560px; font-size: 19px; line-height: 1.6; color: #242424b3;">Every week I pick one AI or Canva workflow, test it, and explain it step by step. You get the exact prompts, the steps, and a free guide to keep.</p>
+      <p style="margin: 0; max-width: 560px; font-size: 19px; line-height: 1.6; color: #242424b3;">Every week I break down one AI system that helps a business get more clients: answering leads, booking, follow-up, reviews, content. You get the tools, the prompts and the exact steps. Build it yourself, or hand it to me.</p>
       <div style="display: flex; flex-direction: column; gap: 10px;">
         {signup_form('newsletter', 'Get the free newsletter', note=False)}
         <p class="nl-note">Join 20,000+ readers. Free, every week. Unsubscribe anytime. <a href="/privacy#top">Privacy</a></p>

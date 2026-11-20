@@ -2,11 +2,15 @@
 
 This is the instruction file for the weekly content agent (and for Lynn). Every week one topic becomes:
 a blog post on the site, a Flodesk newsletter, a reel script for Instagram and TikTok, captions, and a free guide.
-**Every piece has one job: get people to sign up for the newsletter or the free guide.**
+**Every piece has two jobs: get people to sign up for the newsletter or the free guide, and show that Lynn knows AI for marketing and sales so business owners hire her.**
 
 ## Who we write for
-Creatives and small business owners who want to use AI (and Canva) to create more in less time. Not developers.
-Teams and brands are served on /work-with-me; don't pitch training in the weekly content.
+Owners and marketers of service businesses and (luxury) brands: beauty, hair & skin, interior design, real estate, home services & construction, hospitality. Busy, not technical, care about more clients and less admin. Not developers.
+
+## Positioning
+Lynn builds AI systems that fix where a business leaks customers: websites that book, online booking and AI assistants, missed-call text-back, automatic follow-up, review requests, marketing automation. Each issue teaches one of these systems (or one part of it) so readers can try it themselves.
+End every article and reel script with a soft line that she builds this for businesses ("Rather have this built for you? Tell me about your business: shetalksbusiness.co/contact"). One line only; the main CTA stays the free guide.
+Show what the system does in real life (a salon, an interior designer, a builder), not abstract theory. Never invent statistics or client results; if a number is useful, find a real source and cite it in sources.md, or leave it out.
 
 ## Voice
 - Lynn, first person, warm and direct. Short sentences. British spelling (colour, centre).
@@ -42,14 +46,15 @@ Teams and brands are served on /work-with-me; don't pitch training in the weekly
 6. Set the comment keyword in ManyChat (or reply by hand) with the DM text.
 
 ## Topic bank
-- Turn one blog post into 10 social posts in 15 minutes
-- Build a Claude Project / custom GPT for your brand
-- AI product photos from one phone photo (hero, detail, mood)
-- Canva Magic Studio: the 5 tools worth your time ⚠️ verify current names
-- Plan a month of content with one prompt
-- Repurpose a reel into a carousel with AI
-- Write a sales page section by section with AI
-- AI for client emails: templates that don't sound robotic
-- Colour variations of a product image, step by step
-- My weekly AI content workflow, start to finish
-- Prompts to audit your Instagram bio and highlights
+- Find where your business leaks customers: a 10-minute self-audit with AI
+- The missed-call text-back: what it is and how to set it up
+- Get more Google reviews on autopilot (and reply to them with AI)
+- Follow up on every quote without remembering to
+- An AI assistant that answers questions and books appointments on your website
+- Win back past clients with one automated message
+- Cut no-shows with smart reminders
+- What a website that books actually needs (checklist)
+- Turn one client project into a month of content with AI
+- Write all your client emails in your brand voice with AI
+- Luxury brand voice: make automated messages feel personal
+- AI product and portfolio photos for service businesses
