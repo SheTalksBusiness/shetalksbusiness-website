@@ -20,9 +20,9 @@ Show what the system does in real life (a salon, an interior designer, a builder
 - Fact-check every AI tool feature, name and price live before writing it. If something can't be verified, mark it with ⚠️ in the draft for Lynn to check. Prefer tool-agnostic advice.
 
 ## Weekly steps (for the agent)
-1. **Topic.** Read `NEXT-TOPIC.md`. If it has a topic, use it (and its notes). If it's empty, pick the next unused topic from the topic bank below and say so in the pull request. Remove the topic you used from the bank, and reset `NEXT-TOPIC.md` to an empty `Topic:` line in the same pull request.
+1. **Topic.** First check Lynn's Content Studio dashboard (https://claude.ai/artifact/7jkC2BujNwUYGWyBP9LMge) with the ArtifactData tool: `list` the `ideas` collection and take the oldest idea with `status: "new"` (urgent ones first). Use its title, link and notes as the brief; if `format` is `reel`, only write reel-script.md and captions.md. If the dashboard can't be reached or has no new ideas, read `NEXT-TOPIC.md`; if that's empty too, pick the next unused topic from the topic bank below. Say in your summary where the topic came from. Remove a used bank topic from the bank, and reset `NEXT-TOPIC.md` to an empty `Topic:` line if you used it.
 2. **Research.** Check current features and wording of any tool mentioned. Note sources in `drops/<date>-<slug>/sources.md`.
-3. **Article.** Write `content/posts/<date>-<slug>.md` (date = next Thursday) with `status: draft`. 800 to 1,200 words. Structure:
+3. **Article.** Write `content/posts/<date>-<slug>.md` (date = the first Thursday after the latest date already in `content/posts/`, drafts included, and never in the past) with `status: draft`. 800 to 1,200 words. Structure:
    - Problem in 2 to 3 short paragraphs
    - The method, as numbered steps
    - At least one fenced prompt block (```Copy prompt) that readers can copy
@@ -35,13 +35,14 @@ Show what the system does in real life (a salon, an interior designer, a builder
 6. **Captions.** `captions.md`: Instagram caption (hook, value list, comment CTA, save CTA, 5 to 8 hashtags), TikTok caption (short), and the DM reply with the link to `/newsletter/<slug>#guide`.
 7. **Guide.** `guide.md`: 1 to 2 page cheat sheet content, the Flodesk segment name (kebab-case), and the delivery email. Reuse an existing guide if the topic fits.
 8. **Build check.** Run `python3 tools/build.py` and make sure it finishes without errors.
-9. **Hand over.** Commit on a branch `drop/<date>-<slug>`, open a pull request titled "Issue #N: <title>" and summarise what Lynn needs to do. Don't merge.
+9. **Update the dashboard.** With ArtifactData on the Content Studio URL: set the idea you used to `status: "drafted"` (pin `if_version` from your read), and `set` a document in `issues` with id = slug: `{issue, title, date, status: "draft", keyword, preview: "https://shetalksbusiness.co/preview/<slug>", live: "", drop: <GitHub link to the drop folder>, notes: <one line on anything marked ⚠️>, steps: {}}`. If the tool isn't available, say so in the summary.
+10. **Hand over.** Commit straight to `main` with the message "Draft issue #N: <title>" and push. Drafts are safe on main: they are not listed on the site, only visible at the unlinked, non-indexed /preview/<slug> page, so Lynn can review them there. Never set `status: published` yourself.
 
 ## What Lynn does each week
-1. Review the pull request (edit the article right on GitHub if needed).
+1. Open the preview from the Content Studio dashboard and review it (edit the article on GitHub, or ask Claude for changes).
 2. Make the guide PDF in Canva, upload it to Flodesk, create the segment and the workflow (see README).
 3. Film the reel from the script, post it, and paste the reel links into the post's front matter.
-4. Change `status: draft` to `status: published` and merge. Netlify publishes the post automatically.
+4. Ask Claude to publish it (or change `status: draft` to `status: published` on GitHub). Netlify publishes the post automatically.
 5. Build the email in Flodesk from `email.md` and schedule it.
 6. Set the comment keyword in ManyChat (or reply by hand) with the DM text.
 

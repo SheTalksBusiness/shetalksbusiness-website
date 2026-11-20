@@ -54,11 +54,12 @@ def set_meta(head, title, desc, path, image=None, extra=''):
     return head
 
 
-def load_posts():
+def load_posts(drafts=False):
     posts = []
     for f in sorted(glob.glob(os.path.join(ROOT, 'content', 'posts', '*.md'))):
         meta, body = front_matter(open(f, encoding='utf-8').read())
-        if meta.get('status', 'published') != 'published':
+        published = meta.get('status', 'published') == 'published'
+        if published == drafts:
             continue
         meta['body'] = body
         meta['slug'] = meta.get('slug') or os.path.basename(f)[:-3].split('-', 3)[-1]
@@ -250,6 +251,17 @@ def main():
         others = [o for o in posts if o is not p]
         open(os.path.join(SITE, 'newsletter', p['slug'] + '.html'), 'w', encoding='utf-8').write(post_page(p, head, tail, others))
     open(os.path.join(SITE, 'newsletter', 'index.html'), 'w', encoding='utf-8').write(newsletter_page(posts, head, tail))
+
+    # Draft previews: /preview/<slug> (not linked, not indexed) so Lynn can review before publishing
+    prev = os.path.join(SITE, 'preview')
+    os.makedirs(prev, exist_ok=True)
+    for f in glob.glob(os.path.join(prev, '*.html')):
+        os.remove(f)
+    for d in load_posts(drafts=True):
+        page = post_page(d, head, tail, posts)
+        page = page.replace('</head>', '<meta name="robots" content="noindex, nofollow">\n</head>', 1)
+        page = page.replace('<!-- ARTICLE -->', '<p style="margin: 0; background: #b9cfeb; text-align: center; padding: 12px; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;">Draft preview, not published yet</p>\n<!-- ARTICLE -->', 1)
+        open(os.path.join(prev, d['slug'] + '.html'), 'w', encoding='utf-8').write(page)
 
     idx = os.path.join(SITE, 'index.html')
     t = open(idx, encoding='utf-8').read()

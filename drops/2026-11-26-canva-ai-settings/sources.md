@@ -1,0 +1,2 @@
+- Canva Help, Manage AI features: https://www.canva.com/help/manage-ai-features/ (read 20 Nov 2026)
+- Canva Help, Change access to Magic and AI features (team admins): https://www.canva.com/help/magic-features-admin-controls/ (page could not be fetched; admin steps not described in detail ⚠️)
